@@ -11,3 +11,7 @@ The name "hatee" comes from the lyrics of the song [Ylvis - The Fox](https://en.
 * 0.2: Implement `Comment` placeholder API
 * ...
 ### 1: Implement SPA
+
+## APIs
+* Get a single status GET status/{statusID}
+* Create a single status POST status/ with JWT Token
