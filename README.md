@@ -2,7 +2,7 @@
 
 A Twitter like project. 
 
-The name "hatee" comes from the lyrics of the song [Ylvis - The Fox](https://en.wikipedia.org/wiki/The_Fox_(What_Does_the_Fox_Say%3F)) "Hatee-hatee-hatee-ho!"
+The name "hatee" comes from the lyrics of the song [Ylvis - The Fox](https://en.wikipedia.org/wiki/The_Fox_(What_Does_the_Fox_Say%3F)) "Hatee-hatee-hatee-ho!".
 
 
 ## Priority Queue
