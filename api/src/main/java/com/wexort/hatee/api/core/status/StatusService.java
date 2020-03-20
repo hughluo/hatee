@@ -1,4 +1,4 @@
-package com.wexort.hatee.core.status;
+package com.wexort.hatee.api.core.status;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

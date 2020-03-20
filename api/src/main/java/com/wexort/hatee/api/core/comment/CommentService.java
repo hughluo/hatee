@@ -1,4 +1,4 @@
-package com.wexort.hatee.core.comment;
+package com.wexort.hatee.api.core.comment;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

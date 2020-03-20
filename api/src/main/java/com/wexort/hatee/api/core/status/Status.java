@@ -1,4 +1,4 @@
-package com.wexort.hatee.core.status;
+package com.wexort.hatee.api.core.status;
 
 public class Status {
     private final int statusId;

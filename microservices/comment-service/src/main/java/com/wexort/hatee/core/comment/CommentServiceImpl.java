@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.wexort.hatee.util.exceptions.InvalidInputException;
 import com.wexort.hatee.util.http.ServiceUtil;
 
+import com.wexort.hatee.api.core.comment.Comment;
+import com.wexort.hatee.api.core.comment.CommentService;
+
+
 import java.util.ArrayList;
 import java.util.List;
 

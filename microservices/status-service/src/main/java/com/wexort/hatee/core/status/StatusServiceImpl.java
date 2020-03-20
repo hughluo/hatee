@@ -9,6 +9,10 @@ import com.wexort.hatee.util.exceptions.InvalidInputException;
 import com.wexort.hatee.util.exceptions.NotFoundException;
 import com.wexort.hatee.util.http.ServiceUtil;
 
+import com.wexort.hatee.api.core.status.Status;
+import com.wexort.hatee.api.core.status.StatusService;
+
+
 
 @RestController
 public class StatusServiceImpl implements StatusService {

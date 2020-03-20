@@ -1,4 +1,4 @@
-package com.wexort.hatee.core.comment;
+package com.wexort.hatee.api.core.comment;
 
 public class Comment {
     private final int commentId;
