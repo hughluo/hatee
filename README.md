@@ -15,8 +15,8 @@ The name "hatee" comes from the lyrics of the song [Ylvis - The Fox](https://en.
 ### 1: Implement SPA
 
 ## APIs
-* Get a single status `GET status/{statusID}`
-* Get a comments for given status `GET comments?statusId={statusId}`
-* Get a composite status (status with its comments) `GET status-composite/{statusID}`
+* Get a single status `GET $HOST:$PORT/status/{statusID}`
+* Get a comments for given status `GET $HOST:$PORT/comments?statusId={statusId}`
+* Get a composite status (status with its comments) `GET $HOST:$PORT/status-composite/{statusID}`
 * ...
 
