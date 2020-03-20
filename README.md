@@ -7,8 +7,9 @@ The name "hatee" comes from the lyrics of the song [Ylvis - The Fox](https://en.
 
 ## Priority Queue
 ### 0: Implement APIs
-* 0.1: Implement `Status` placeholder API <= Current
+* 0.1: Implement `Status` placeholder API 
 * 0.2: Implement `Comment` placeholder API
+* 0.3: Implement `Status-Composite` placeholder API <=
 * ...
 ### 1: Implement SPA
 
