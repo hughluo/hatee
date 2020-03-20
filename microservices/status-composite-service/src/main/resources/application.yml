@@ -7,3 +7,8 @@ app:
     comment-service:
         host: localhost
         port: 7002
+
+logging:
+    level:
+        root: INFO
+        com.wexort: DEBUG

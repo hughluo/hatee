@@ -4,17 +4,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-import com.wexort.hatee.composite.status.api.StatusCompositeService;
-import com.wexort.hatee.composite.status.api.*;
-import jdk.net.SocketFlow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wexort.hatee.core.status.Status;
-import com.wexort.hatee.core.comment.Comment;
+
+import com.wexort.hatee.api.core.status.Status;
+import com.wexort.hatee.api.core.comment.Comment;
+import com.wexort.hatee.api.composite.status.StatusCompositeService;
+import com.wexort.hatee.api.composite.status.StatusAggregate;
+import com.wexort.hatee.api.composite.status.CommentSummary;
+
+
+
 import com.wexort.hatee.util.exceptions.NotFoundException;
 import com.wexort.hatee.util.http.ServiceUtil;
 
+@RestController
 public class StatusCompositeServiceImpl implements StatusCompositeService {
 
     private final ServiceUtil serviceUtil;
@@ -26,20 +31,18 @@ public class StatusCompositeServiceImpl implements StatusCompositeService {
         this.integration = integration;
     }
 
-    @Override
     public StatusAggregate getStatus(int statusId) {
+        System.out.println("!!!called " + statusId);
 
         Status status = integration.getStatus(statusId);
         if (status == null) throw new NotFoundException("No status found for statusId: " + statusId);
 
-        List<Recommendation> recommendations = integration.getRecommendations(statusId);
-
         List<Comment> comments = integration.getComments(statusId);
 
-        return createStatusAggregate(status, recommendations, comments, serviceUtil.getServiceAddress());
+        return createStatusAggregate(status, comments);
     }
 
-    private StatusAggregate createStatusAggregate(Status status, List<Recommendation> recommendations, List<Comment> comments, String serviceAddress) {
+    private StatusAggregate createStatusAggregate(Status status, List<Comment> comments) {
 
         // 1. Setup status info
         int statusId = status.getStatusId();

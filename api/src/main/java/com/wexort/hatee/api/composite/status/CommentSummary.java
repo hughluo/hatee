@@ -1,4 +1,4 @@
-package com.wexort.hatee.composite.status.api;
+package com.wexort.hatee.api.composite.status;
 
 public class CommentSummary {
     final int commentId;

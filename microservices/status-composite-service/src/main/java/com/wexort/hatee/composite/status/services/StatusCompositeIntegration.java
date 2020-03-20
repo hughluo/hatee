@@ -1,5 +1,8 @@
 package com.wexort.hatee.composite.status.services;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,15 +16,19 @@ import org.springframework.web.client.RestTemplate;
 import static org.springframework.http.HttpMethod.GET;
 
 
-import com.wexort.hatee.core.status.Status;
-import com.wexort.hatee.core.status.StatusService;
-import com.wexort.hatee.core.comment.Comment;
-import com.wexort.hatee.core.comment.CommentService;
+import com.wexort.hatee.api.core.status.Status;
+import com.wexort.hatee.api.core.status.StatusService;
+import com.wexort.hatee.api.core.comment.Comment;
+import com.wexort.hatee.api.core.comment.CommentService;
+import com.wexort.hatee.api.composite.status.CommentSummary;
 
 import com.wexort.hatee.util.exceptions.InvalidInputException;
 import com.wexort.hatee.util.exceptions.NotFoundException;
 import com.wexort.hatee.util.http.HttpErrorInfo;
 
+import java.io.IOException;
+
+@Component
 public class StatusCompositeIntegration implements StatusService, CommentService {
 
     private static final Logger LOG = LoggerFactory.getLogger(StatusCompositeIntegration.class);
