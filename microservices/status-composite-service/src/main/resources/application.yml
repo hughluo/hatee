@@ -1,3 +1,38 @@
+api:
+
+    common:
+        version: 1.0.0
+        title: Hatee API
+        description: A Twitter-like API
+        termsOfServiceUrl: MINE TERMS OF SERVICE URL
+        license: License
+        licenseUrl: MY LICENSE URL
+
+        contact:
+            name: Wexort
+            url: wexort.com
+            email: bugwriter@outlook.com
+
+    status-composite:
+
+        get-composite-status:
+            description: Returns a composite view of the specified status id
+            notes: |
+                # Normal response
+                If the requested status id is found the following information will be returned:
+                1. Base status information
+                1. Comments on the status
+                # Expected partial and error responses
+                In the following cases, only a partial response be created (used to simplify testing of error conditions)
+                ## Status id 213
+                200 - Ok, but no comments will be returned
+                ## Non numerical status id
+                400 - A <b>Bad Request</b> error will be returned
+                ## Status id 13
+                404 - A <b>Not Found</b> error will be returned
+                ## Negative status ids
+                422 - An <b>Unprocessable Entity</b> error will be returned
+
 server.port: 7000
 
 app:
@@ -20,7 +55,7 @@ server.port: 8080
 
 app:
     status-service:
-        host: product
+        host: status
         port: 8080
     comment-service:
         host: comment

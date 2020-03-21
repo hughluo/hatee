@@ -32,7 +32,6 @@ public class StatusCompositeServiceImpl implements StatusCompositeService {
     }
 
     public StatusAggregate getStatus(int statusId) {
-        System.out.println("!!!called " + statusId);
 
         Status status = integration.getStatus(statusId);
         if (status == null) throw new NotFoundException("No status found for statusId: " + statusId);
