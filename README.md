@@ -10,7 +10,9 @@ The name "hatee" comes from the lyrics of the song [Ylvis - The Fox](https://en.
 * 0.1: Implement `Status` placeholder API 
 * 0.2: Implement `Comment` placeholder API
 * 0.3: Implement `Status-Composite` placeholder API
-* 0.4: Implement Persistance Layer for each microservice <=
+* 0.4: Dockerize
+* 0.5: Add API Description using Swagger <=
+* 0.6: Implement Persistance Layer for each microservice
 * ...
 ### 1: Implement SPA
 
