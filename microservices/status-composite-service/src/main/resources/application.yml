@@ -12,3 +12,16 @@ logging:
     level:
         root: INFO
         com.wexort: DEBUG
+
+---
+spring.profiles: docker
+
+server.port: 8080
+
+app:
+    status-service:
+        host: product
+        port: 8080
+    comment-service:
+        host: comment
+        port: 8080
