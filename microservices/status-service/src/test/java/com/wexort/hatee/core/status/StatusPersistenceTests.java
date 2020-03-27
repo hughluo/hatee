@@ -69,4 +69,16 @@ public class StatusPersistenceTests {
         assertEquals(2, repository.count());
     }
 
+    @Test
+    public void update() {
+        String contentUpdated = "I am status content updated";
+        savedEntity.setContent(contentUpdated);
+        repository.save(savedEntity);
+
+        StatusEntity foundEntity = repository.findById(savedEntity.getId()).get();
+        assertEquals(1, (long)foundEntity.getVersion());
+        assertEquals(contentUpdated, foundEntity.getContent());
+    }
+
+
 }
