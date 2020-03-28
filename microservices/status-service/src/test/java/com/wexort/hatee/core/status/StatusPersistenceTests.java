@@ -80,5 +80,11 @@ public class StatusPersistenceTests {
         assertEquals(contentUpdated, foundEntity.getContent());
     }
 
+    @Test
+    public void delete() {
+        repository.delete(savedEntity);
+        assertFalse(repository.existsById(savedEntity.getId()));
+    }
+
 
 }
