@@ -86,5 +86,19 @@ public class StatusPersistenceTests {
         assertFalse(repository.existsById(savedEntity.getId()));
     }
 
+    @Test
+    public void getByStatusId() {
+        Optional<StatusEntity> entity = repository.findByStatusId(savedEntity.getStatusId());
+
+        assertTrue(entity.isPresent());
+        assertEqualsStatus(savedEntity, entity.get());
+    }
+
+    @Test(expected = DuplicateKeyException.class)
+    public void duplicateError() {
+        StatusEntity entity = new StatusEntity(savedEntity.getStatusId(), 1, 1, "I am content from duplicateError test");
+        repository.save(entity);
+    }
+
 
 }
