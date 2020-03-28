@@ -67,8 +67,6 @@ public class CommentEntity {
     }
 
     public String getContent() {
-
-
         return content;
     }
 
