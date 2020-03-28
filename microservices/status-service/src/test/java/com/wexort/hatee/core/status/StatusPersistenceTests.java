@@ -42,21 +42,6 @@ public class StatusPersistenceTests {
         assertEqualsStatus(entity, savedEntity);
     }
 
-    private Pageable testNextPage(Pageable nextPage, String expectedStatusIds, boolean expectsNextPage) {
-        Page<StatusEntity> statusPage = repository.findAll(nextPage);
-        assertEquals(expectedStatusIds, statusPage.getContent().stream().map(p -> p.getStatusId()).collect(Collectors.toList()).toString());
-        assertEquals(expectsNextPage, statusPage.hasNext());
-        return statusPage.nextPageable();
-    }
-
-    private void assertEqualsStatus(StatusEntity expectedEntity, StatusEntity actualEntity) {
-        assertEquals(expectedEntity.getId(),               actualEntity.getId());
-        assertEquals(expectedEntity.getVersion(),          actualEntity.getVersion());
-        assertEquals(expectedEntity.getStatusId(),        actualEntity.getStatusId());
-        assertEquals(expectedEntity.getUserId(),           actualEntity.getUserId());
-        assertEquals(expectedEntity.getContent(),           actualEntity.getContent());
-    }
-
     @Test
     public void create() {
 
@@ -129,5 +114,38 @@ public class StatusPersistenceTests {
         assertEquals(content1, updatedEntity.getContent());
     }
 
+    @Test
+    public void paging() {
+        repository.deleteAll();
+        List<StatusEntity> newProducts = rangeClosed(1001, 1010)
+                .mapToObj(i -> new StatusEntity(i, 0, 0, "content with statusId " + i))
+                .collect(Collectors.toList());
+        repository.saveAll(newProducts);
+
+        Pageable nextPage = PageRequest.of(0, 4, ASC, "statusId");
+        nextPage = testNextPage(nextPage, "[1001, 1002, 1003, 1004]",
+                true);
+        nextPage = testNextPage(nextPage, "[1005, 1006, 1007, 1008]",
+                true);
+        nextPage = testNextPage(nextPage, "[1009, 1010]", false);
+    }
+
+
+    private void assertEqualsStatus(StatusEntity expectedEntity, StatusEntity actualEntity) {
+        assertEquals(expectedEntity.getId(),               actualEntity.getId());
+        assertEquals(expectedEntity.getVersion(),          actualEntity.getVersion());
+        assertEquals(expectedEntity.getStatusId(),        actualEntity.getStatusId());
+        assertEquals(expectedEntity.getUserId(),           actualEntity.getUserId());
+        assertEquals(expectedEntity.getContent(),           actualEntity.getContent());
+    }
+
+    private Pageable testNextPage(Pageable nextPage, String expectedStatusIds, boolean expectsNextPage) {
+        Page<StatusEntity> statusPage = repository.findAll(nextPage);
+        assertEquals(expectedStatusIds, statusPage.getContent()
+                .stream().map(p -> p.getStatusId()).collect(Collectors.
+                        toList()).toString());
+        assertEquals(expectsNextPage, statusPage.hasNext());
+        return statusPage.nextPageable();
+    }
 
 }
