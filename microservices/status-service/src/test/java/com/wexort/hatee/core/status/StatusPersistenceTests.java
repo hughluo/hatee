@@ -100,5 +100,34 @@ public class StatusPersistenceTests {
         repository.save(entity);
     }
 
+    @Test
+    public void optimisticLockError() {
+
+        // Store the saved entity in two separate entity objects
+        StatusEntity entity1 = repository.findById(savedEntity.getId()).get();
+        StatusEntity entity2 = repository.findById(savedEntity.getId()).get();
+
+        String content1 = "content for entity1";
+        String content2 = "content for entity2";
+
+        // Update the entity using the first entity object
+        entity1.setContent(content1);
+        repository.save(entity1);
+
+        //  Update the entity using the second entity object.
+        // This should fail since the second entity now holds a old version number, i.e. a Optimistic Lock Error
+        try {
+            entity2.setContent(content2);
+            repository.save(entity2);
+
+            fail("Expected an OptimisticLockingFailureException");
+        } catch (OptimisticLockingFailureException e) {}
+
+        // Get the updated entity from the database and verify its new sate
+        StatusEntity updatedEntity = repository.findById(savedEntity.getId()).get();
+        assertEquals(1, (int)updatedEntity.getVersion());
+        assertEquals(content1, updatedEntity.getContent());
+    }
+
 
 }
